@@ -8,6 +8,9 @@ const dataSource = new ProductData('tents');
 const product = new ProductDetails(productId, dataSource);
 product.init();
 
+//document.querySelector('#addToCart').addEventListener('click',product.addToCart(productId));
+
+
 /*let products = [];
 
 function setLocalStorage(key, data) {

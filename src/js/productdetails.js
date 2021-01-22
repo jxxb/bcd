@@ -1,4 +1,4 @@
-import {setLocalStorage} from './utils.js';
+import {setLocalStorage, getLocalStorage} from './utils.js';
 
 export default class ProductDetails {
     constructor(productId, datasource){
@@ -13,7 +13,15 @@ export default class ProductDetails {
     }
     addToCart(t) {
         //const product = products.find((n) => n.Id === t.target.dataset.id);
-        setLocalStorage("so-cart", this.product);
+        
+        let cart  = getLocalStorage('so-cart');
+        if (cart === null) {
+            cart = [];
+        }
+        cart.push(this.product);
+        setLocalStorage("so-cart", cart);
+        
+        console.log(this.product);
       }
     renderProductDetails(){
         console.log(this.product);
