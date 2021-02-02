@@ -25,3 +25,10 @@ export function getParams(param){
   return urlParams.get('product');
 }
 
+export function renderListWithTemplate(template, parent, productList, callback) {
+  productList.forEach(item => {
+    const clone = template.content.cloneNode(true);
+    const templateWithData = callback(clone, item);
+    parent.appendChild(templateWithData);
+  })
+}
