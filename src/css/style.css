@@ -100,6 +100,15 @@ button {
   padding-top: 1em;
   position: relative;
   text-align: center;
+  animation-name: cartAnimation;
+  animation-duration: 4s;
+}
+
+@keyframes cartAnimation {
+  0% {transform: rotate(0);}
+  33% {transform: rotate(-33);}
+  66% {transform: rotate(33);}
+  100% {transform: rotate(0);}
 }
 
 .cart svg {
