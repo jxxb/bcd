@@ -33,3 +33,11 @@ function addToCart(e) {
 getProductsData();
 // add listener to Add to Cart button
 document.getElementById("addToCart").addEventListener("click", addToCart);
+
+document.getElementById('addToCart').addEventListener('click', function() {
+  document.querySelector('.cart').classList.add('shake');
+});
+
+document.querySelector(".cart").addEventListener("transitionend", function() {
+  document.querySelector('.cart').classList.remove('shake');
+});

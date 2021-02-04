@@ -100,13 +100,20 @@ button {
   padding-top: 1em;
   position: relative;
   text-align: center;
+  transition: all 800ms ease;
 }
 
 .cart svg {
   width: 25px;
 }
+
 .cart:hover svg {
   fill: gray;
+}
+
+.shake {
+  transform:rotate(-720deg);
+  fill: blue;
 }
 
 /* End cart icon styles */
@@ -219,3 +226,4 @@ footer {
   font-size: var(--small-font);
   padding: 1em;
 }
+
