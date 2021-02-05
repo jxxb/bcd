@@ -1,3 +1,7 @@
+import { loadHeaderFooter } from './utils';
+
+loadHeaderFooter();
+
 let itemNum = 0;
 function getLocalStorage(key) {
   return JSON.parse(localStorage.getItem(key));
