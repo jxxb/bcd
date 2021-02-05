@@ -19,7 +19,7 @@ function getCartContents() {
 }
 
 function renderCartItem(item) { 
-  const newItem = `<li class="cart-card divider item${itemNum}">
+  const newItem = `<li class="cart-card divider item${item.Id}">
   <a href="#" class="cart-card__image">
     <img
       src="${item.Image}"
@@ -32,7 +32,7 @@ function renderCartItem(item) {
   <p class="cart-card__color">${item.Colors[0].ColorName}</p>
   <p class="cart-card__quantity">qty: 1</p>
   <p class="cart-card__price">$${item.FinalPrice}</p>
-  <button class="remove${item.Id} " data-Id="${itemNum}" value="Remove">Remove</button>
+  <button class="remove${item.Id} " data-Id="${item.Id}" value="Remove">Remove</button>
 </li>`;
   itemNum++;
   console.log(newItem);
@@ -45,12 +45,13 @@ use array methoods to remove the correct cart item
 delete now unused html
 */
 function removeCartItem(ev){
-  const index = ev.target.dataset.id;
+  const item = ev.target.dataset.id;
   let cart  = getLocalStorage('so-cart');
+  let cartIds = cart.map(item => item.Id);
+  let index = cartIds.indexOf(item);
   cart.splice(index, 1);
   setLocalStorage("so-cart", cart); 
-  document.querySelector(".item"+index).remove(); 
-  console.log("I work");
+  document.querySelector(".item"+item).remove(); 
 }
 
 getCartContents();
