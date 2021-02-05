@@ -4,7 +4,20 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Sleep Outside | Cart</title>
-    <link rel="stylesheet" href="../src/css/style.css" />
+    <link rel="stylesheet" href="/css/style.css" />
+    <template id="cart-card-template">
+      <li class="cart-card divider">
+        <a href="#" class='card-card__image'>
+        <img src="" alt="Image of "/>
+        <a href=>
+        <h2 class="card__name"></h2>
+      </a>
+        <p class="cart-card__color"></p>
+        <p class="cart-card__quantity">qty: 1</p>
+        <p class="cart-card__price">$</p>
+      </a>
+      </li>
+    </template>
   </head>
   <body>
     <header class="divider" id='main-header'>
@@ -80,6 +93,6 @@
     <footer id='main-footer'>
       <!-- &copy;NOT a real business -->
     </footer>
-    <script src="../src/js/cart.js"></script>
+    <script src="../js/cart.js" type='module'></script>
   </body>
 </html>

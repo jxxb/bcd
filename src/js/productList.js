@@ -19,7 +19,7 @@ export default class productList {
         template.querySelector('img').alt += product.Image;
         template.querySelector('.card__brand').textContent += product.Brand.Name;
         template.querySelector('.card__name').textContent += product.NameWithoutBrand;
-        template.querySelector('.product-card__price').textContent += product.price;
+        template.querySelector('.product-card__price').textContent += product.ListPrice;
         return template;
     }
 

@@ -1,4 +1,6 @@
-import {setLocalStorage, getLocalStorage} from './utils.js';
+import {setLocalStorage, getLocalStorage, loadHeaderFooter } from './utils.js';
+
+loadHeaderFooter();
 
 export default class ProductDetails {
     constructor(productId, datasource){
@@ -6,6 +8,7 @@ export default class ProductDetails {
         this.product = {};
         this.datasource = datasource;
      }
+
     async init(){
         this.product = await this.datasource.findProductById(this.productId);
         document.querySelector('main').innerHTML = this.renderProductDetails();
