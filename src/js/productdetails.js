@@ -27,12 +27,11 @@ export default class ProductDetails {
         console.log(this.product);
       }
     renderProductDetails(){
-        console.log(this.product);
         return `<section class="product-detail"> <h3>${this.product.Brand.Name}</h3>
         <h2 class="divider">${this.product.NameWithoutBrand}</h2>
         <img
             class='divider'
-            src='${this.product.Image}'
+            src='${this.product.Images.PrimaryLarge}'
             alt='${this.product.NameWithoutBrand}'
             />
             <p class="product-card__price">$${this.product.FinalPrice}</p>
