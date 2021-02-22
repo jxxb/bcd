@@ -1,12 +1,27 @@
 import { renderListWithTemplate, getLocalStorage } from "./utils";
+import ExternalServices from './ExternalServices';
 
-function formDataToJSON() {
-   var formData = new FormData(formElement);
+const services = new ExternalServices();
+function formDataToJSON(formElement) {
+   var formData = new FormData(formElement),
    convertedJSON = {};
    formData.forEach(function(value,key) {
       convertedJSON[key] = value;
    });
    return convertedJSON = {};
+}
+
+function packageItems(items){
+   const simplifiedItems = items.map((item)=>{
+      console.log(item);
+      return {
+         id: item.Id,
+         price: item.FinalPrice,
+         name: item.Name,
+         quantity: 1,
+      };
+   });
+   return simplifiedItems;
 }
 
 export default class CheckoutProcess {
@@ -25,29 +40,29 @@ export default class CheckoutProcess {
 
    init() {
       this.list = getLocalStorage(this.key);
-      this.renderSubtotal()
+      this.calcItemSummary();
    }
 
-   calcSubtotal() {
+   calcOrderTotal() {
       this.shipping = 10 + (this.list.length - 1) *2;
       this.tax = (this.subtotal *.06).toFixed(2);
       //Why do we have to use parseFloat?  Aren't these numbers already?
-      this.order = (parseFloat(this.itemTotal) + parseFloat(this.shipping) + parseFloat(this.tax)).toFixed(2);
-      this.renderSubtotal();
+      this.order = (parseFloat(this.subtotal) + parseFloat(this.shipping) + parseFloat(this.tax)).toFixed(2);
+      this.renderTotal();
    }
 
-   renderSubtotal() {
+   renderTotal() {
       //why output Selector?
-      const shipping = document.querySelector(this.outputSelector + '#shipping');
-      const tax = document.querySelector(this.outputSelector + '#tax');
-      const order = document.querySelector(this.outputSelector + '#order');
+      const shipping = document.querySelector(this.outputSelector + ' #shipping');
+      const tax = document.querySelector(this.outputSelector + ' #tax');
+      const order = document.querySelector(this.outputSelector + ' #order');
 
       shipping.innerText = '$' + this.shipping;
       tax.innerText = '$' + this.tax;
       order.innerText = '$' + this.order;
    }
 
-   renderOrderSummary() {
+  calcItemSummary() {
       //why call this an element when it's just a subtotal? why space between ' #subtotal?
       const subtotalElement = document.querySelector(this.outputSelector + ' #subtotal');
       const numItemsElement = document.querySelector(this.outputSelector + ' #numItems');
@@ -61,7 +76,7 @@ export default class CheckoutProcess {
 
    async checkout() {
       //why var vs let?
-      var formElement = document.querySelector('form');
+      var formElement = document.forms['checkout'];
 
       const json = formDataToJSON(formElement);
 
@@ -73,7 +88,7 @@ export default class CheckoutProcess {
       json.items = packageItems(this.list);
       console.log(json);
      try {
-         const res = await ServiceUIFrameContext.checkout(json);
+         const res = await services.checkout(json);
          console.log(res);
       } 
       catch(err) {

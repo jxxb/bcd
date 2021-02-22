@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Sleep Outside | Checkout</title>
-    <link rel="stylesheet" href="../src/css/style.css" />
+    <link rel="stylesheet" href="../css/style.css" />
   </head>
   <body>
     <header class="divider" id='main-header'></header>
@@ -33,10 +33,15 @@
 
           <fieldset class='orderSummary'>
             <legend>Order Summary</legend>
-            <p id="subtotal">Item Subtotal(<span id='numItems'></span>)</p>
-            <p id="shipping">Shipping Estimate:</p>
-            <p id="tax">Tax:</p>
-            <p id="order">Order Total:</p>
+            <label for='cartTotal'> Item Subtotal:(<span id='numItems'></span>)</label>
+             <p name='cartTotal' id='subtotal'></p>
+            <label for='shipping'>Shipping Estimate:</label>
+             <p id="shipping"></p>
+            <label for='tax'>Tax:</label>
+             <p id="tax"></p>
+            <label for='orderTotal'>Order Total:</label>
+            <p name='orderTotal' id="order"></p>
+
             </fieldset>
             <button id='orderSubmit' type="submit">Complete Purchase:</button>
       </form>
@@ -44,5 +49,6 @@
     <footer id='main-footer'>
       <!-- &copy;NOT a real business -->
     </footer>
+    <script src='../js/checkout.js' type='module'></script>
   </body>
 </html>
