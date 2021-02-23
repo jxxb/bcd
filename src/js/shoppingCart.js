@@ -1,5 +1,7 @@
 import { renderListWithTemplate, getLocalStorage } from "./utils";
 
+let totalPrice = 0;
+
 export default class shoppingList {
     constructor(key,listElement) {
         this.key = key;
@@ -10,7 +12,9 @@ export default class shoppingList {
 
       //shouldn't we need an await?!
         const list = getLocalStorage(this.key);
-        this.renderList(list);
+        await this.renderList(list);
+        document.querySelector('.totalPrice').innerHTML += totalPrice;
+        return totalPrice;
     }
 
     prepareTemplate(template, product) {
@@ -20,6 +24,7 @@ export default class shoppingList {
         template.querySelector('.cart__name').textContent = product.Name;
         template.querySelector('.cart__color').textContent = product.Colors[0].ColorName;
         template.querySelector('.cart-card__price').textContent += product.FinalPrice;
+        totalPrice += product.FinalPrice;
         return template;
     }
 
