@@ -2,7 +2,12 @@
 
   function convertToJson(t) {
     if (t.ok) return t.json();
-    throw new Error("Bad Response");
+    
+    else {
+      const jsonResponse = t.json();
+      throw {name: 'servicesError', message: jsonResponse};
+    }
+   
   }
 
   export default class ExternalServices {

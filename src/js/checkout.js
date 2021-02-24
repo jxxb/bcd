@@ -9,6 +9,10 @@ checkout.init();
 document.querySelector('#zip').addEventListener('blur', checkout.calcOrderTotal.bind(checkout));
 document.querySelector('#orderSubmit').addEventListener('click', (e) => {
     e.preventDefault();
-    checkout.checkout();
-})
+    var myForm = document.forms[0];
+    var chk_status = myForm.checkValidity();
+    myForm.reportValidity();
+    if (chk_status)
+        checkout.checkout();
+});
 

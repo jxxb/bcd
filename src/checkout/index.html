@@ -12,23 +12,23 @@
       <section class="products">
         <h2>Review & Place your Order</h2>
       </section>
-      <form method="POST">
+      <form name="checkout" method="POST">
 
         <fieldset>
         <legend>Shipping</legend>
-        First Name: <input type="text" name="fname">  
-        <br> Last Name: <input type="text" name="lname">  
-        <br> Street: <input type="text" name="street">  
-        <br> City: <input type="text" name="city">  
-        <br>State: <input type="text" name="state">  
-        <br> Zip: <input type="number" name="zip" id='zip'>
+        First Name: <input type="text" name="fname" required>  
+        <br> Last Name: <input type="text" name="lname" required>  
+        <br> Street: <input type="text" name="street" required>  
+        <br> City: <input type="text" name="city" required>  
+        <br>State: <input type="text" name="state" required>  
+        <br> Zip: <input type="number" name="zip" id='zip' required>
         </fieldset>
 
         <fieldset>
           <legend>Payment</legend> 
-          Card Number: <input type="number" name="cardNumber"><br>
-          Expiration Date: <input type="date" name="expiration"><br>
-          Security Code: <input type="number" name="code"><br>
+          Card Number: <input type="number" name="cardNumber" pattern="1234123412341234" required><br>
+          Expiration Date: <input type="text" name="expiration" pattern="(0[1-9]|1[0-2])\/?(([0-9]{4})|[0-9]{2}$)" required><br>
+          Security Code: <input type="number" name="code" pattern="123" required><br>
           </fieldset>
 
           <fieldset class='orderSummary'>

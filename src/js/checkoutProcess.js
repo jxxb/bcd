@@ -1,4 +1,4 @@
-import { renderListWithTemplate, getLocalStorage } from "./utils";
+import { renderListWithTemplate, getLocalStorage, alertMessage, removeAllAlerts, setLocalStorage } from "./utils";
 import ExternalServices from './ExternalServices';
 
 const services = new ExternalServices();
@@ -8,7 +8,7 @@ function formDataToJSON(formElement) {
    formData.forEach(function(value,key) {
       convertedJSON[key] = value;
    });
-   return convertedJSON = {};
+   return convertedJSON;
 }
 
 function packageItems(items){
@@ -90,11 +90,13 @@ export default class CheckoutProcess {
      try {
          const res = await services.checkout(json);
          console.log(res);
+         setLocalStorage('so-cart',[]);
+         location.assign("/checkout/checkedout.html");
       } 
       catch(err) {
+         removeAllAlerts();
+         for(let messge in message) (alertMessage(err.message[message]));
          console.log(err);
       }
-      
    }
-
 }

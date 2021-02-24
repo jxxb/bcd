@@ -66,3 +66,4 @@ export async function loadHeaderFooter() {
   renderWithTemplate(headerT,headerD);
   renderWithTemplate(footerT,footerD);
 }
+
