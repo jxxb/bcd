@@ -3,11 +3,8 @@ import ExternalServices from './ExternalServices';
 
 const services = new ExternalServices();
 function formDataToJSON(formElement) {
-   var formData = new FormData(formElement),
-   convertedJSON = {};
-   formData.forEach(function(value,key) {
-      convertedJSON[key] = value;
-   });
+   let formData = new FormData(formElement);
+   const convertedJSON = Object.fromEntries(formData.entries());
    return convertedJSON;
 }
 
@@ -95,7 +92,9 @@ export default class CheckoutProcess {
       } 
       catch(err) {
          removeAllAlerts();
-         for(let messge in message) (alertMessage(err.message[message]));
+         for(let messge in err.message){
+             alertMessage(err.message[message]);
+            }
          console.log(err);
       }
    }

@@ -1,4 +1,4 @@
-import { loadHeaderFooter } from './utils';
+import { alertMessage, loadHeaderFooter } from './utils';
 import CheckoutProcess from './checkoutProcess.js';
 
 loadHeaderFooter();
@@ -12,7 +12,11 @@ document.querySelector('#orderSubmit').addEventListener('click', (e) => {
     var myForm = document.forms[0];
     var chk_status = myForm.checkValidity();
     myForm.reportValidity();
-    if (chk_status)
+    if (chk_status){
         checkout.checkout();
+    }
+    else{
+        alertMessage('you are wrong?');
+    }
 });
 

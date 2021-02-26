@@ -23,12 +23,15 @@
         <br>State: <input type="text" name="state" required>  
         <br> Zip: <input type="number" name="zip" id='zip' required>
         </fieldset>
+        <fieldset>
+          <legend>Remember Me</legend>
+        </fieldset>
 
         <fieldset>
           <legend>Payment</legend> 
-          Card Number: <input type="number" name="cardNumber" pattern="1234123412341234" required><br>
-          Expiration Date: <input type="text" name="expiration" pattern="(0[1-9]|1[0-2])\/?(([0-9]{4})|[0-9]{2}$)" required><br>
-          Security Code: <input type="number" name="code" pattern="123" required><br>
+          Card Number: <input type="number" value='1234123412341234'name="cardNumber" pattern="1234123412341234" required><br>
+          Expiration Date: <input type="text" value='10/21'name="expiration" pattern="(0[1-9]|1[0-2])\/?(([0-9]{4})|[0-9]{2}$)" required><br>
+          Security Code: <input type="number" name="code" pattern="123" maxlength="3" max="999" required><br>
           </fieldset>
 
           <fieldset class='orderSummary'>

@@ -71,19 +71,20 @@ export async function loadHeaderFooter() {
 }
 
 export function alertMessage(message, scroll = true, duration = 3000) {
-  const alter = document.createElement('div');
+  const alert = document.createElement('div');
   alert.classList.add('alert');
-  alert.innerHTML = `<p${message}><span>X</span>`
+  alert.innerHTML = `<p>${message}</p><span>X</span>`;
   alert.addEventListener('click', function(e) {
     if (e.target.tagName == 'SPAN'){
       main.removeChild(this);
     }
+  })
     const main = document.querySelector('main');
     main.prepend(alert);
     if (scroll) {
       window.scroll(0,0);
     }
-  })
+  
 }
 
 export function removeAllAlerts() {
