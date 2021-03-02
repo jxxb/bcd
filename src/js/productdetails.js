@@ -1,4 +1,4 @@
-import {setLocalStorage, getLocalStorage, loadHeaderFooter } from './utils.js';
+import {setLocalStorage, getLocalStorage, loadHeaderFooter, alertMessage } from './utils.js';
 
 loadHeaderFooter();
 
@@ -25,6 +25,7 @@ export default class ProductDetails {
         setLocalStorage("so-cart", cart);
         
         console.log(this.product);
+        alertMessage(`${this.product.NameWithoutBrand} added to cart?`);
       }
     renderProductDetails(){
         return `<section class="product-detail"> <h3>${this.product.Brand.Name}</h3>

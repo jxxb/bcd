@@ -1,3 +1,11 @@
+function convertToText(res) {
+  if (res.ok) return res.text();
+  
+  else {
+    throw new Error("Bad Responce");
+  }
+}
+
 // wrapper for querySelector...returns matching element
 export function qs(selector) {
   return document.querySelector(selector);
@@ -19,6 +27,7 @@ export function setClick(selector, callback) {
   });
   qs(selector).addEventListener("click", callback);
 }
+
 export function getParams(param){
   const queryString = window.location.search;
   const urlParams = new URLSearchParams(queryString);
@@ -41,12 +50,6 @@ export function renderWithTemplate(template, parent, data, callback) {
   }
 
   parent.appendChild(clone);
-
-  // productList.forEach(item => {
-  //   const clone = template.content.cloneNode(true);
-  //   const templateWithData = callback(clone, item);
-  //   parent.appendChild(templateWithData);
-  // })
 }
 
 export async function loadTemplate(path) {
@@ -65,4 +68,26 @@ export async function loadHeaderFooter() {
   let footerD = document.getElementById('main-footer');
   renderWithTemplate(headerT,headerD);
   renderWithTemplate(footerT,footerD);
+}
+
+export function alertMessage(message, scroll = true, duration = 3000) {
+  const alert = document.createElement('div');
+  alert.classList.add('alert');
+  alert.innerHTML = `<p>${message}</p><span>X</span>`;
+  alert.addEventListener('click', function(e) {
+    if (e.target.tagName == 'SPAN'){
+      main.removeChild(this);
+    }
+  })
+    const main = document.querySelector('main');
+    main.prepend(alert);
+    if (scroll) {
+      window.scroll(0,0);
+    }
+  
+}
+
+export function removeAllAlerts() {
+  const alerts = document.querySelector('.alert');
+  alerts.forEach(alert => document.querySelector('main').removeChild(alert));
 }
