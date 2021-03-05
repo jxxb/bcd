@@ -39,20 +39,20 @@
         },
         body: JSON.stringify(creds),
      };
-     return await fetch(baseURL + 'login/', options).then(convertToJson);
+     const response = await fetch(baseURL + 'login', options).then(convertToJson);
+     return response.accessToken;
     }
 
-    async checkout(order){
+    async getOrders(token){
       const options = {
         method: 'GET',
         headers:{
-          'Content-Type': 'application/json',
-          //token
           'Authorization': `Bearer ${token}`
         },
-        body: JSON.stringify(order),
+        //body: JSON.stringify(order),
       };
-      return await fetch(baseURL + 'order/', options).then(convertToJson);
+       const response = await fetch(baseURL + 'orders', options).then(convertToJson);
+       return response;
        }
 
   }
