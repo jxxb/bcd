@@ -1,5 +1,6 @@
   const baseURL="http://157.201.228.93:2992/";
 
+
   function convertToJson(t) {
     if (t.ok) return t.json();
     
@@ -28,6 +29,30 @@
     };
     return await fetch(baseURL + 'checkout/', options).then(convertToJson);
      }
+
+     async loginRequest(creds) {
+       //creds = {email: '', password:''};
+       const options = {
+        method: 'POST',
+        headers:{
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(creds),
+     };
+     const response = await fetch(baseURL + 'login', options).then(convertToJson);
+     return response.accessToken;
     }
 
-    
+    async getOrders(token){
+      const options = {
+        method: 'GET',
+        headers:{
+          'Authorization': `Bearer ${token}`
+        },
+        //body: JSON.stringify(order),
+      };
+       const response = await fetch(baseURL + 'orders', options).then(convertToJson);
+       return response;
+       }
+
+  }
